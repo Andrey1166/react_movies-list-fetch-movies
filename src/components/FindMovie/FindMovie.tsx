@@ -28,8 +28,9 @@ export const FindMovie: React.FC<Props> = ({ handleAddMovie }) => {
           setError(null);
           const newMovie = {
             imgUrl:
-              p.Poster ||
-              'https://via.placeholder.com/360x270.png?text=no%20preview',
+              p.Poster !== 'N/A'
+                ? p.Poster
+                : 'https://via.placeholder.com/360x270.png?text=no%20preview',
             title: p.Title,
             description: p.Plot,
             imdbUrl: p.imdbID,
@@ -66,7 +67,7 @@ export const FindMovie: React.FC<Props> = ({ handleAddMovie }) => {
 
           {error && (
             <p className="help is-danger" data-cy="errorMessage">
-              Can&apos;t find a movie with such a title
+              {error}
             </p>
           )}
         </div>
